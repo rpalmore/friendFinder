@@ -13,21 +13,23 @@ module.exports = function(app) {
         friendsData.push(request.body);
         response.json(friendsData);
 
+        // Loop through data to print each score
         for (var i = 0; i < friendsData.length; i++) {
             var scores = friendsData[i].scores.map(Number);
             console.log(friendsData[i].name);
             console.log(scores);
 
-            for (var x = 1; x < friendsData.length; x++) {
+            // Calculate difference between each score in friendsArray
+            for (var x = 0; x < friendsData.length; x++) {
+
                 var totalDifference = [];
 
                 for (var y = 0; y < 10; y++) {
 
                     var difference = Math.abs(friendsData[i].scores[y] - friendsData[x].scores[y]);
-                    // if (difference) {
 
-                        totalDifference.push(difference);
-                    // }
+                    totalDifference.push(difference);
+
                     var sum = totalDifference.reduce(add, 0);
 
                     function add(a, b) {
@@ -35,16 +37,19 @@ module.exports = function(app) {
                     }
 
                 }
-                
-                    console.log("Difference with " + friendsData[x].name + ": " + sum);
-                
-                }
-                console.log("================================");
 
+                if (x != i) {
+                    console.log("Difference with " + friendsData[x].name + ": " + sum);
+
+                }
+
+            }
+            console.log("================================");
         }
 
     })
 }
+
 
 
 
