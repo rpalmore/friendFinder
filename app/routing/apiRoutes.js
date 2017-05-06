@@ -2,7 +2,6 @@
 
 var friendsData = require("../data/friends.js");
 
-
 module.exports = function(app) {
 
     app.get("/api/friends", function(request, response) {
@@ -37,12 +36,18 @@ module.exports = function(app) {
                     }
 
                 }
-
+                // Print out differences and find best match
+            
                 if (x != i) {
                     console.log("Difference with " + friendsData[x].name + ": " + sum);
-                    if (sum <= x) {
+                
+                    if (sum <= y) {
                         console.log("Best match: " + friendsData[x].name);
+                        var bestMatch = [];
+                        bestMatch.push(friendsData[x].name);
+                        console.log(bestMatch);
                     }
+                    
                 }
 
             }
@@ -53,6 +58,4 @@ module.exports = function(app) {
 }
 
 
-
-// The closest match will be the user with the least amount of difference.
 
