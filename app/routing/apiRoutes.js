@@ -45,7 +45,7 @@ module.exports = function(app) {
                 console.log("================================");
 
             }
-
+// If current user (?) 
             console.log(friendsData[i]);
 
         }
